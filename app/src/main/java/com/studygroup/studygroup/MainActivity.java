@@ -1,8 +1,11 @@
 package com.studygroup.studygroup;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -23,6 +26,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.studygroup.studygroup.Poco.Usuario;
+import com.studygroup.studygroup.VolleyHelper.GsonRequest;
 import com.studygroup.studygroup.VolleyHelper.VolleySingleton;
 
 import org.json.JSONArray;
@@ -30,9 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, GetTestFragment.OnFragmentInteractionListener, PostTestFragment.OnFragmentInteractionListener {
 
-    TextView TextViewTEST;
     String MobyDickurlTEST = "http://httpbin.org/html";
     String JsonUrlTEST ="http://mongostudygroup-app4tbd.rhcloud.com/service/usuarios/8";
 
@@ -61,78 +65,9 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TextViewTEST = (TextView)findViewById(R.id.textViewTest);
+        //fragment por defecto que sera mostrado
+        displayView(R.id.GET_TESTS);
 
-        // Request a string response
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, MobyDickurlTEST,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Result handling
-                        TextViewTEST.setText(response.substring(129,500));
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                // Error handling
-                System.out.println("Something went wrong!");
-                error.printStackTrace();
-
-            }
-        });
-
-        // Add the request to the queue
-        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
-    }
-
-    public void refreshButton01(View v){
-        // Request a string response
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, MobyDickurlTEST,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        // Result handling
-                        TextViewTEST.setText(response.substring(126,500));
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                // Error handling
-                System.out.println("Something went wrong!");
-                error.printStackTrace();
-
-            }
-        });
-
-// Add the request to the queue
-        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
-    }
-
-    public void refreshButton02(View v){
-
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, JsonUrlTEST, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        TextViewTEST.setText("Response: " + response.toString());
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-
-// Add the request to the queue
-        VolleySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
     }
 
     @Override
@@ -170,29 +105,47 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        displayView(item.getItemId());
+        return true;
+    }
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+    public void displayView(int viewId) {
 
-        } else if (id == R.id.nav_slideshow) {
+        Fragment fragment = null;
+        String title = getString(R.string.app_name);
 
-        } else if (id == R.id.nav_manage) {
+        switch (viewId) {
+            case R.id.GET_TESTS:
+                fragment = new GetTestFragment();
+                title  = "News";
 
-        } else if (id == R.id.nav_share) {
+                break;
+            case R.id.POST_TESTS:
+                fragment = new PostTestFragment();
+                title = "Events";
+                break;
 
-        } else if (id == R.id.nav_send) {
+        }
 
+        if (fragment != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame, fragment);
+            ft.commit();
+        }
+
+        // set the toolbar title
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+
     }
 
-
+    public void onFragmentInteraction(Uri uri){
+        //you can leave it empty
+    }
 
 
 }

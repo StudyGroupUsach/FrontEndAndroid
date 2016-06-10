@@ -12,35 +12,8 @@
     tools:context="com.studygroup.studygroup.MainActivity">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textViewTest"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:id="@+id/content_frame"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test 01"
-        android:id="@+id/buttonRefresh01"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="refreshButton01"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test 02"
-        android:id="@+id/buttonRefresh02"
-        android:onClick="refreshButton02"
-        android:layout_alignTop="@+id/buttonRefresh01"
-        android:layout_toRightOf="@+id/buttonRefresh01"
-        android:layout_toEndOf="@+id/buttonRefresh01" />
 </RelativeLayout>

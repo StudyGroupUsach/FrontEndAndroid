@@ -1,0 +1,36 @@
+//GSON con Volley para hacer GET obteniendo como resultado un objeto (que debe existir en el package Poco
+//reemplazar elementos en mayuscula TYPE STRINGURL PROPERTY con sus respectivos valores
+final GsonRequest gsonRequest = new GsonRequest(STRINGURL, TYPE.class, null, new Response.Listener<TYPE>() {
+
+            @Override
+            public void onResponse(TYPE type) {
+                //manage response code
+                TextViewEXAMPLE.setText(TYPE.PROPERTY);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if(volleyError != null) Log.e("MainActivity", volleyError.getMessage());
+            }
+        });
+
+//StringRequest con Volley, reemplazar elementos en mayuscula STRINGURL con sus respectivos valores
+StringRequest stringRequest = new StringRequest(Request.Method.GET, STRINGURL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        // Result handling
+                        TextViewEXAMPLE.setText(response.substring(126,500));
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                // Error handling
+                System.out.println("Something went wrong!");
+                error.printStackTrace();
+
+            }
+        });

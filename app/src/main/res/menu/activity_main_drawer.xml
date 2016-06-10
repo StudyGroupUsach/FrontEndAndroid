@@ -3,33 +3,33 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Home" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/Fill03"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Filler03" />
+        <item
+            android:id="@+id/GET_TESTS"
+            android:icon="@drawable/ic_menu_share"
+            android:title="GET TESTS" />
+        <item
+            android:id="@+id/POST_TESTS"
+            android:icon="@drawable/ic_menu_send"
+            android:title="POST TESTS" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Activity Switchers">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/one_press_01"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Filler04" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/one_press_02"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Filler05" />
         </menu>
     </item>
 
