@@ -7,6 +7,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.studygroup.studygroup.VolleyHelper.VolleySingleton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -17,7 +35,7 @@ import android.view.ViewGroup;
  * Use the {@link PostTestFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PostTestFragment extends Fragment {
+public class PostTestFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -60,11 +78,19 @@ public class PostTestFragment extends Fragment {
         }
     }
 
+    private View myFragmentView;
+    private TextView postTextView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_post_test, container, false);
+        myFragmentView = inflater.inflate(R.layout.fragment_post_test, container, false);
+        postTextView = (TextView)myFragmentView.findViewById(R.id.postTextView);
+
+        Button b = (Button) myFragmentView.findViewById(R.id.button3);
+        b.setOnClickListener(this);
+
+        return myFragmentView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -104,5 +130,38 @@ public class PostTestFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    String JsonCarrerasUrlTEST ="http://mongostudygroup-app4tbd.rhcloud.com/service/gestion_carreras/";
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button3:
+                JSONObject nuevaCarrera = new JSONObject();
+                try {
+                    nuevaCarrera.put("nombreCarrera", "testHD02");
+                }
+                catch (JSONException e) { }
+
+                JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST,JsonCarrerasUrlTEST,nuevaCarrera,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                //Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //hideProgressDialog();
+                            }
+                        });
+
+                VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsObjRequest);
+
+
+                break;
+        }
     }
 }

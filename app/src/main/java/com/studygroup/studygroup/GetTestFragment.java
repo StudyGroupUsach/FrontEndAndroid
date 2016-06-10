@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.studygroup.studygroup.Poco.Usuario;
+import com.studygroup.studygroup.VolleyHelper.GsonRequest;
 import com.studygroup.studygroup.VolleyHelper.VolleySingleton;
 
 
@@ -73,6 +76,7 @@ public class GetTestFragment extends Fragment {
     private TextView getTextView;
     //url de pruebas
     String MobyDickurlTEST = "http://httpbin.org/html";
+    String JsonUrlTEST ="http://mongostudygroup-app4tbd.rhcloud.com/service/usuarios/8";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,28 +85,22 @@ public class GetTestFragment extends Fragment {
         //se recibe la referencia al textview
         getTextView = (TextView)myFragmentView.findViewById(R.id.getTextView);
 
-        //se realiza el GET
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, MobyDickurlTEST,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Result handling
-                        getTextView.setText(response.substring(129,500));
+        GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, JsonUrlTEST, Usuario.class, null, new Response.Listener<Usuario>() {
 
-                    }
-                }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-
-                // Error handling
-                System.out.println("Something went wrong!");
-                error.printStackTrace();
-
+            public void onResponse(Usuario user) {
+                //manage response code
+                getTextView.setText(user.nombre);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if(volleyError != null) Log.e("MainActivity", volleyError.getMessage());
             }
         });
 
         // Add the request to the queue
-        VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(getActivity()).addToRequestQueue(gsonRequest);
 
         return myFragmentView;
     }

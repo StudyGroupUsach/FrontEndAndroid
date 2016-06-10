@@ -18,7 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,11 +36,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GetTestFragment.OnFragmentInteractionListener, PostTestFragment.OnFragmentInteractionListener {
 
-    String MobyDickurlTEST = "http://httpbin.org/html";
-    String JsonUrlTEST ="http://mongostudygroup-app4tbd.rhcloud.com/service/usuarios/8";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,6 +149,4 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri){
         //you can leave it empty
     }
-
-
 }
