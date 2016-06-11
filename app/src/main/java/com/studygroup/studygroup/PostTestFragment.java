@@ -18,6 +18,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.studygroup.studygroup.Poco.Usuario;
+import com.studygroup.studygroup.VolleyHelper.GsonRequest;
 import com.studygroup.studygroup.VolleyHelper.VolleySingleton;
 
 import org.json.JSONException;
@@ -140,11 +142,11 @@ public class PostTestFragment extends Fragment implements View.OnClickListener {
             case R.id.button3:
                 JSONObject nuevaCarrera = new JSONObject();
                 try {
-                    nuevaCarrera.put("nombreCarrera", "testHD02");
+                    nuevaCarrera.put("nombreCarrera", "testHD03");
                 }
                 catch (JSONException e) { }
 
-                JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST,JsonCarrerasUrlTEST,nuevaCarrera,
+                GsonRequest gRequest = new GsonRequest(Request.Method.POST,JsonCarrerasUrlTEST, Usuario.class, null, nuevaCarrera,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -158,7 +160,7 @@ public class PostTestFragment extends Fragment implements View.OnClickListener {
                             }
                         });
 
-                VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsObjRequest);
+                VolleySingleton.getInstance(getActivity()).addToRequestQueue(gRequest);
 
 
                 break;

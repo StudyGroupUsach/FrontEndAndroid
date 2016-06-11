@@ -38,5 +38,4 @@ public class Usuario {
     @SerializedName("nombreCarrera")
     public String nombreCarrera;
 
-    public List<Ramo> grupoTemporals;
 }
