@@ -13,6 +13,7 @@ import com.google.gson.JsonSyntaxException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -21,24 +22,24 @@ import java.util.Map;
 public class GsonRequest<T> extends JsonRequest<T> {
 
     private final Gson mGson;
-    private final Class<T> mClassType;
+    private final Type type;
     private final Map<String, String> mHeaders;
     private final Response.Listener<T> mListener;
 
-    public GsonRequest(int method, String url, Class<T> classType, JSONObject jsonRequest,
+    public GsonRequest(int method, String url, Type type, JSONObject jsonRequest,
                         Response.Listener<T> listener, Response.ErrorListener errorListener) {
-        this(method, url, classType, null, jsonRequest, listener, errorListener);
+        this(method, url, type, null, jsonRequest, listener, errorListener);
     }
 
-    public GsonRequest(int method, String url, Class<T> classType, Map<String, String> headers,
+    public GsonRequest(int method, String url, Type type, Map<String, String> headers,
                        JSONObject jsonRequest, Response.Listener<T> listener,
                        Response.ErrorListener errorListener) {
         super(method, url, (jsonRequest == null) ? null : jsonRequest.toString(), listener,
                 errorListener);
-        mGson = new Gson();
-        mClassType = classType;
-        mHeaders = headers;
-        mListener = listener;
+        this.mGson = new Gson();
+        this.type = type;
+        this.mHeaders = headers;
+        this.mListener = listener;
     }
 
     @Override
@@ -49,15 +50,14 @@ public class GsonRequest<T> extends JsonRequest<T> {
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse networkResponse) {
         try {
-            String json = new String(networkResponse.data, HttpHeaderParser.parseCharset
-                    (networkResponse.headers));
-            return Response.success(mGson.fromJson(json, mClassType),
-                    HttpHeaderParser.parseCacheHeaders(networkResponse));
+            String json = new String(networkResponse.data, HttpHeaderParser.parseCharset(networkResponse.headers));
+            T parseObject = mGson.fromJson(json, type);
+            return Response.success(parseObject,HttpHeaderParser.parseCacheHeaders(networkResponse));
         } catch (UnsupportedEncodingException e) {
-            return Response.error(new ParseError(e));
-        } catch (JsonSyntaxException e) {
-            return Response.error(new ParseError(e));
+            e.printStackTrace();
         }
+
+        return null;
     }
 
     @Override

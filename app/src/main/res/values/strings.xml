@@ -6,6 +6,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Inicio Sesión</string>
+    <string name="title_activity_register">Registrarse</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -13,8 +14,8 @@
     <string name="action_sign_in">Iniciar Sesión</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">El email debe ser @usach.cl</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_invalid_password">Contraseña muy corta</string>
+    <string name="error_incorrect_info">Datos incorrrectos</string>
     <string name="error_field_required">El campo no puede ser vacío</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
@@ -23,5 +24,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="login_url">http://mongostudygroup-app4tbd.rhcloud.com/service/login</string>
+    <!-- URLs para el servicio -->
+    <string name="url_base">http://mongostudygroup-app4tbd.rhcloud.com/service/</string>
+    <string name="url_login">http://mongostudygroup-app4tbd.rhcloud.com/service/login/</string>
+    <string name="url_carreras">http://mongostudygroup-app4tbd.rhcloud.com/service/gestion_carreras/</string>
+    <string name="url_ramos">http://mongostudygroup-app4tbd.rhcloud.com/service/gestion_carreras/ramos/</string>
+    <string name="url_usuarios">http://mongostudygroup-app4tbd.rhcloud.com/service/usuarios/</string>
+    <string name="url"></string>
 </resources>

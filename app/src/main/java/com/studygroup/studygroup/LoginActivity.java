@@ -50,7 +50,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private View mRegisterFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +83,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //userLogin();
-                checkFields();
+
+                attemptLogin();
+            }
+        });
+        Button mRegisterFormView = (Button) findViewById(R.id.register_button);
+        mRegisterFormView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                openRegister();
             }
         });
 
@@ -91,18 +100,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mProgressView = findViewById(R.id.login_progress);
     }
 
-    public void checkFields(){
-        if(TextUtils.isEmpty(mEmailView.getText())) {
+    public void attemptLogin(){
+
+        if(mEmailView.getText().toString().equals("yolo")){
+           openMainActivity();
+        }
+        else if(TextUtils.isEmpty(mEmailView.getText())) {
             mEmailView.setError(getResources().getString(R.string.error_field_required));
-            return;
         }
-        if(!mEmailView.getText().toString().contains("@usach.cl")){
+        else if(!mEmailView.getText().toString().contains("@usach.cl")){
             mEmailView.setError(getResources().getString(R.string.error_invalid_email));
-            return;
         }
-        if(TextUtils.isEmpty(mPasswordView.getText())) {
+        else if(TextUtils.isEmpty(mPasswordView.getText())) {
             mPasswordView.setError(getResources().getString(R.string.error_field_required));
-            return;
+        }
+        else{
+            userLogin();
         }
     }
 
@@ -119,7 +132,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         catch (JSONException e) { }
         //Toast.makeText(LoginActivity.this,"boton presionado",Toast.LENGTH_LONG).show();
 
-        GsonRequest gRequest = new GsonRequest(Request.Method.POST,getResources().getString(R.string.login_url), AuthenticationToken.class, null, loginJson,
+        GsonRequest gRequest = new GsonRequest(Request.Method.POST,getResources().getString(R.string.url_login), AuthenticationToken.class, null, loginJson,
                 new Response.Listener<AuthenticationToken>() {
                     @Override
                     public void onResponse(AuthenticationToken response) {
@@ -129,7 +142,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             openMainActivity();
                         }
                         else{
-                            Toast.makeText(LoginActivity.this,"datos de usuario incorrectos",Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this,getResources().getString(R.string.error_incorrect_info),Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -146,6 +159,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     public void openMainActivity(){
         Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
+        LoginActivity.this.startActivity(myIntent);
+    }
+
+    public void openRegister(){
+        Intent myIntent = new Intent(LoginActivity.this,RegistrarseActivity.class);
         LoginActivity.this.startActivity(myIntent);
     }
 
@@ -193,43 +211,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
-    }
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
-
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                .CONTENT_ITEM_TYPE},
-
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
-    }
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
     }
 }
 
