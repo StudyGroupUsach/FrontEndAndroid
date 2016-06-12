@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -95,10 +96,14 @@ public class GetTestFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                if(volleyError != null) Log.e("MainActivity", volleyError.getMessage());
+                //if(volleyError != null) Log.e("MainActivity", volleyError.getMessage());
             }
         });
 
+        gsonRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         // Add the request to the queue
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(gsonRequest);
 
