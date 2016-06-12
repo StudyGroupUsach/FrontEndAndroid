@@ -24,4 +24,6 @@ public class Ramo {
 
     @SerializedName("nombreCarrera")
     public String nombreCarrera;
+
+    public String getName(){return this.nombreRamo;}
 }

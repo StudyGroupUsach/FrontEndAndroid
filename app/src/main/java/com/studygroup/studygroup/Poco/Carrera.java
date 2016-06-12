@@ -12,7 +12,10 @@ public class Carrera {
     public int carreraId;
 
     @SerializedName("nombreCarrera")
-    public int nombreCarrera;
+    public String nombreCarrera;
 
     List<Ramo> ramo;
+
+    public String getName(){return this.nombreCarrera;}
+
 }

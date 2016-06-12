@@ -25,10 +25,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- URLs para el servicio -->
-    <string name="url_base">http://mongostudygroup-app4tbd.rhcloud.com/service/</string>
-    <string name="url_login">http://mongostudygroup-app4tbd.rhcloud.com/service/login/</string>
-    <string name="url_carreras">http://mongostudygroup-app4tbd.rhcloud.com/service/gestion_carreras/</string>
-    <string name="url_ramos">http://mongostudygroup-app4tbd.rhcloud.com/service/gestion_carreras/ramos/</string>
-    <string name="url_usuarios">http://mongostudygroup-app4tbd.rhcloud.com/service/usuarios/</string>
+    <string name="url_base">http://mongostudygroup-app4tbd.rhcloud.com/servicios/</string>
+    <string name="url_login">http://mongostudygroup-app4tbd.rhcloud.com/servicios/login/</string>
+    <string name="url_carreras">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_carreras/</string>
+    <string name="url_ramos">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_carreras/ramos/</string>
+    <string name="url_usuarios">http://mongostudygroup-app4tbd.rhcloud.com/servicios/usuarios/</string>
     <string name="url"></string>
 </resources>

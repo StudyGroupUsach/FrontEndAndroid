@@ -52,11 +52,32 @@
         android:ems="10"
         android:id="@+id/text_pass" />
 
-    <AutoCompleteTextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New AutoCompleteTextView"
-        android:id="@+id/autoCompleteTextView" />
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Carrera"
+            android:id="@+id/autoCompleteRamosRegister"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Código"
+            android:id="@+id/textView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:hint="Codigo"
+            android:id="@+id/text_codigo_carrera" />
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
