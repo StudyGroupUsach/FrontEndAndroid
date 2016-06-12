@@ -35,20 +35,26 @@ public class CarreraAdapter extends ArrayAdapter<Carrera> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getDropDownView(int position, View cnvtView, ViewGroup prnt) {
+        return getCustomView(position, cnvtView, prnt);
+    }
+    @Override
+    public View getView(int pos, View cnvtView, ViewGroup prnt) {
+        return getCustomView(pos, cnvtView, prnt);
+    }
+    public View getCustomView(int position, View convertView,
+                              ViewGroup parent) {
         View view = convertView;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_view_row, parent, false);
         }
-        Carrera carrera = items.get(position);
-        if (carrera != null) {
-            TextView lblName = (TextView) view.findViewById(R.id.lbl_name);
-            if (lblName != null)
-                lblName.setText(carrera.getName());
-        }
+        TextView main_text = (TextView) view.findViewById(R.id.lbl_name);
+        main_text.setText(items.get(position).getName());
+
         return view;
     }
+
 
     @Override
     public Filter getFilter() {
