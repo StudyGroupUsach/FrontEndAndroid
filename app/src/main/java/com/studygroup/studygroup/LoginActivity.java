@@ -130,7 +130,6 @@ public class LoginActivity extends AppCompatActivity {
             loginJson.put("pass", password);
         }
         catch (JSONException e) { }
-        //Toast.makeText(LoginActivity.this,"boton presionado",Toast.LENGTH_LONG).show();
 
         GsonRequest gRequest = new GsonRequest(Request.Method.POST,getResources().getString(R.string.url_login), AuthenticationToken.class, null, loginJson,
                 new Response.Listener<AuthenticationToken>() {

@@ -4,7 +4,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
     <string name="title_activity_login">Inicio Sesión</string>
     <string name="title_activity_register">Registrarse</string>
 
@@ -30,5 +29,22 @@
     <string name="url_carreras">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_carreras/</string>
     <string name="url_ramos">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_carreras/ramos/</string>
     <string name="url_usuarios">http://mongostudygroup-app4tbd.rhcloud.com/servicios/usuarios/</string>
-    <string name="url"></string>
+    <string name="url_lugares">http://mongostudygroup-app4tbd.rhcloud.com/servicios/lugares/</string>
+
+    <!-- navigation drawer items-->
+    <string name="buscar_grupo">Buscar Grupo</string>
+    <string name="crear_grupo">Crear Grupo</string>
+    <string name="carrera">Carrera</string>
+    <string name="ramos">Ramos</string>
+    <string name="comunicaciones">Comunicaciones</string>
+    <string name="buscar_usuarios">Buscar Usuarios</string>
+    <string name="enviar">Enviar</string>
+    <!--- otros-->
+    <string name="title_activity_main">Study Group</string>
+    <string name="action_settings">Acerca de</string>
+    <string name="opciones">Opciones</string>
+    <string name="void_string"></string>
+    <string name="new_item"></string>
+
+
 </resources>

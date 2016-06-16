@@ -38,10 +38,12 @@ public class CarreraAdapter extends ArrayAdapter<Carrera> {
     public View getDropDownView(int position, View cnvtView, ViewGroup prnt) {
         return getCustomView(position, cnvtView, prnt);
     }
+
     @Override
     public View getView(int pos, View cnvtView, ViewGroup prnt) {
         return getCustomView(pos, cnvtView, prnt);
     }
+
     public View getCustomView(int position, View convertView,
                               ViewGroup parent) {
         View view = convertView;

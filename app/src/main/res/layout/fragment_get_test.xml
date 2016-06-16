@@ -19,17 +19,17 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"/>
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/textDePrueba"
         android:layout_gravity="center_horizontal" />
+
+    <ListView
+        android:id="@+id/list_view_lugar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

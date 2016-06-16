@@ -40,7 +40,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, GetTestFragment.OnFragmentInteractionListener, PostTestFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        GetTestFragment.OnFragmentInteractionListener,
+        PostTestFragment.OnFragmentInteractionListener {
 
 
     @Override
@@ -50,14 +52,14 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /**FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)  {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });**/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //fragment por defecto que sera mostrado
-        displayView(R.id.GET_TESTS);
+        //displayView(R.id.GET_TESTS);
 
     }
 
@@ -108,10 +110,58 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        displayView(item.getItemId());
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        boolean fragmentos= false;//indica si estamos en un fragmento o no
+        Fragment fragment = null;// para pasar de un fragmento a otro
+
+        if (id == R.id.buscar_grupo) {
+            fragment = new GetTestFragment();
+            fragmentos= true;
+            //fragment = new FragmentBuscarGrupo();// pasa a fragment de grupo
+            //fragmentos = true;
+        }
+        else if (id == R.id.crear_grupo) {
+            //fragment=new FragmentCrearGrupo();
+            //fragmentos= true;
+        }
+        else if (id == R.id.carrera) {
+            //fragment = new FragmentCarrera();
+            //fragmentos = true;
+        }
+        else if (id == R.id.ramos) {
+            //fragment = new FragmentRamos();
+            //fragmentos= true;
+        }
+        else if (id == R.id.buscar_usuarios) {
+            //fragment = new FragmentBuscarUsuarios();
+            //fragmentos= true;
+        }
+        else if (id == R.id.nav_enviar) {
+            //fragment = new FragmentEnviar();
+            //fragmentos = true;
+        }
+
+        if(fragmentos){// al ver que se ejecuta un fragmento se encarga de pasar al otro
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_main,fragment)
+                    .commit();
+
+            item.setChecked(true);
+            getSupportActionBar().setTitle(item.getTitle());
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+/**
     public void displayView(int viewId) {
 
         Fragment fragment = null;
@@ -148,5 +198,5 @@ public class MainActivity extends AppCompatActivity
 
     public void onFragmentInteraction(Uri uri){
         //you can leave it empty
-    }
+    }*/
 }

@@ -26,4 +26,5 @@ public class Ramo {
     public String nombreCarrera;
 
     public String getName(){return this.nombreRamo;}
+
 }

@@ -3,33 +3,33 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/buscar_grupo"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Home" />
+            android:title="@string/buscar_grupo" />
         <item
-            android:id="@+id/Fill03"
+            android:id="@+id/crear_grupo"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/crear_grupo" />
+        <item
+            android:id="@+id/carrera"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/carrera" />
+        <item
+            android:id="@+id/ramos"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Filler03" />
-        <item
-            android:id="@+id/GET_TESTS"
-            android:icon="@drawable/ic_menu_share"
-            android:title="GET TESTS" />
-        <item
-            android:id="@+id/POST_TESTS"
-            android:icon="@drawable/ic_menu_send"
-            android:title="POST TESTS" />
+            android:title="@string/ramos" />
     </group>
 
-    <item android:title="Activity Switchers">
+    <item android:title="@string/comunicaciones">
         <menu>
             <item
-                android:id="@+id/one_press_01"
+                android:id="@+id/buscar_usuarios"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Filler04" />
+                android:title="@string/buscar_usuarios" />
             <item
-                android:id="@+id/one_press_02"
+                android:id="@+id/nav_enviar"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Filler05" />
+                android:title="@string/enviar" />
         </menu>
     </item>
 

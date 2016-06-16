@@ -1,13 +1,21 @@
 package com.studygroup.studygroup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -15,9 +23,17 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.gson.reflect.TypeToken;
+import com.studygroup.studygroup.Adapters.CarreraAdapter;
+import com.studygroup.studygroup.Adapters.LugarAdapter;
+import com.studygroup.studygroup.Poco.Carrera;
+import com.studygroup.studygroup.Poco.Lugar;
 import com.studygroup.studygroup.Poco.Usuario;
 import com.studygroup.studygroup.VolleyHelper.GsonRequest;
 import com.studygroup.studygroup.VolleyHelper.VolleySingleton;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 
 /**
@@ -34,6 +50,12 @@ public class GetTestFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    TextView textViewDePrueba;
+    ArrayList<Lugar> mLugarList = new ArrayList<>();
+
+    ArrayAdapter<Lugar> lugarAdapter;
+
+    ListView listViewLugar;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -86,6 +108,23 @@ public class GetTestFragment extends Fragment {
         //se recibe la referencia al textview
         getTextView = (TextView)myFragmentView.findViewById(R.id.getTextView);
 
+        listViewLugar = (ListView) myFragmentView.findViewById(R.id.list_view_lugar);
+        listViewLugar.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MostarDetalleLugar fragment = new MostarDetalleLugar();
+                fragment.setLugar(mLugarList.get(position));
+                FragmentTransaction fragmentTransaction;
+                fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.content_main,fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
+        textViewDePrueba =(TextView)myFragmentView.findViewById(R.id.textDePrueba);
+
         GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, JsonUrlTEST, Usuario.class, null, new Response.Listener<Usuario>() {
 
             @Override
@@ -107,14 +146,43 @@ public class GetTestFragment extends Fragment {
         // Add the request to the queue
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(gsonRequest);
 
+        Type type = new TypeToken<ArrayList<Lugar>>() {}.getType();
+        GsonRequest gsonRequestLugares = new GsonRequest(Request.Method.GET, getResources().getString(R.string.url_lugares), type, null, new Response.Listener<ArrayList<Lugar>>() {
+
+            @Override
+            public void onResponse(ArrayList<Lugar> lugar) {
+                //manage response code
+                //getTextView.setText(lugar.nombre);
+                mLugarList =lugar;
+                //textViewDePrueba.setText(mLugarList.get(0).toString());
+                completarAdapter();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                //if(volleyError != null) Log.e("MainActivity", volleyError.getMessage());
+            }
+        });
+
+        VolleySingleton.getInstance(getActivity()).addToRequestQueue(gsonRequestLugares);
+        FragmentTransaction fragmentTransaction;
+        fragmentTransaction = getFragmentManager().beginTransaction();
+        Bundle bundle = new Bundle();
+
         return myFragmentView;
     }
+    public void pasarFragmento(){
 
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+    public void completarAdapter(){
+        lugarAdapter= new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,mLugarList);
+        listViewLugar.setAdapter(lugarAdapter);
     }
 
     @Override
@@ -148,4 +216,5 @@ public class GetTestFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

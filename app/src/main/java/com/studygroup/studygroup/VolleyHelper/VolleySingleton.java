@@ -13,6 +13,7 @@ import com.android.volley.toolbox.Volley;
  * Created by mmora on 6/10/2016.
  */
 public class VolleySingleton {
+
     private static VolleySingleton mInstance;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
@@ -62,4 +63,5 @@ public class VolleySingleton {
     public ImageLoader getImageLoader() {
         return mImageLoader;
     }
+
 }

@@ -93,7 +93,6 @@ public class RegistrarseActivity extends AppCompatActivity {
 
         Type type = new TypeToken<ArrayList<Carrera>>() {}.getType();
         GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, getResources().getString(R.string.url_carreras), type, null, new Response.Listener<ArrayList<Carrera>>() {
-
             @Override
             public void onResponse(ArrayList<Carrera> response) {
                 //manage response code
@@ -151,25 +150,9 @@ public class RegistrarseActivity extends AppCompatActivity {
         String rPassword = pass.getText().toString().trim();
         String rCodigoCarreda = codigoCarrera.getText().toString().trim();
 
-        JSONObject carreraJson = new JSONObject();
-        try {
-            carreraJson.put("carreraId", rCodigoCarreda);
-        }
-        catch (JSONException e) { }
+        Usuario user = new Usuario(rNombre,rApellido,rMail,rTelefono,rPassword,Integer.parseInt(rCodigoCarreda));
 
-        JSONObject registerJson = new JSONObject();
-        try {
-            registerJson.put("nombre", rNombre);
-            registerJson.put("apellidos", rApellido);
-            registerJson.put("descripcion","");
-            registerJson.put("mail", rMail);
-            registerJson.put("numeroMovil", rTelefono);
-            registerJson.put("pass", rPassword);
-            registerJson.put("carrera",carreraJson);
-        }
-        catch (JSONException e) { }
-
-        GsonRequest gRequest = new GsonRequest(Request.Method.POST,getResources().getString(R.string.url_usuarios), RegisterToken.class, null, registerJson,
+        GsonRequest gRequest = new GsonRequest(Request.Method.POST,getResources().getString(R.string.url_usuarios), RegisterToken.class, null, user.toJsonObject(),
                 new Response.Listener<RegisterToken>() {
                     @Override
                     public void onResponse(RegisterToken response) {
