@@ -23,15 +23,25 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!-- URLs para el servicio -->
+    <!-- TODO URLs para el servicio -->
     <string name="url_base">http://mongostudygroup-app4tbd.rhcloud.com/servicios/</string>
     <string name="url_login">http://mongostudygroup-app4tbd.rhcloud.com/servicios/login/</string>
     <string name="url_carreras">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_carreras/</string>
     <string name="url_ramos">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_carreras/ramos/</string>
     <string name="url_usuarios">http://mongostudygroup-app4tbd.rhcloud.com/servicios/usuarios/</string>
     <string name="url_lugares">http://mongostudygroup-app4tbd.rhcloud.com/servicios/lugares/</string>
+    <!-- agregar /usuarioId-->
+    <string name="url_preferencia_ramos">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_relacion_usuarios/</string>
+    <!-- agregar aparte el /usuarioId/ramoId-->
+    <string name="url_preferencia_grupo_estudio">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_relacion_usuarios/grupo_estudio/</string>
+    <!-- agregar /usuarioId/ramoId-->
+    <string name="url_encontrar_otros_estudiantes">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_relacion_usuarios/grupo_estudio_por_usuarios/</string>
+    <string name="url_grupos_temporales">http://mongostudygroup-app4tbd.rhcloud.com/servicios/grupos_temporales/</string>
+    <!--agregar /usuarioId-->
+    <string name="url_ramos_a_elegir">http://mongostudygroup-app4tbd.rhcloud.com/servicios/usuarios/ramos_a_elegir/</string>
 
-    <!-- navigation drawer items-->
+
+    <!-- TODO navigation drawer items-->
     <string name="buscar_grupo">Buscar Grupo</string>
     <string name="crear_grupo">Crear Grupo</string>
     <string name="carrera">Carrera</string>
@@ -39,7 +49,7 @@
     <string name="comunicaciones">Comunicaciones</string>
     <string name="buscar_usuarios">Buscar Usuarios</string>
     <string name="enviar">Enviar</string>
-    <!--- otros-->
+    <!--- TODO otros-->
     <string name="title_activity_main">Study Group</string>
     <string name="action_settings">Acerca de</string>
     <string name="opciones">Opciones</string>

@@ -38,7 +38,7 @@ public class Lugar{
     public double longitudLugar;
 
     @SerializedName("grupoTemporals")
-    List<GruposTemporales> gruposTemporales;
+    public List<GruposTemporales> gruposTemporales;
 
     public Lugar(double latitudLugar, double longitudLugar) {
         this.latitudLugar = latitudLugar;

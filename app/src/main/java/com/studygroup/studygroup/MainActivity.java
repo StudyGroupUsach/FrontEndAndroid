@@ -28,6 +28,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.studygroup.studygroup.Fragments.FragmentBuscarGrupo;
+import com.studygroup.studygroup.Fragments.FragmentEncontrarOtrosEstudiantes;
+import com.studygroup.studygroup.Fragments.FragmentRamos;
 import com.studygroup.studygroup.Poco.Usuario;
 import com.studygroup.studygroup.VolleyHelper.GsonRequest;
 import com.studygroup.studygroup.VolleyHelper.VolleySingleton;
@@ -42,7 +45,10 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         GetTestFragment.OnFragmentInteractionListener,
-        PostTestFragment.OnFragmentInteractionListener {
+        PostTestFragment.OnFragmentInteractionListener,
+        FragmentRamos.OnFragmentInteractionListener,
+        FragmentBuscarGrupo.OnFragmentInteractionListener,
+        FragmentEncontrarOtrosEstudiantes.OnFragmentInteractionListener{
 
 
     @Override
@@ -117,12 +123,14 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;// para pasar de un fragmento a otro
 
         if (id == R.id.buscar_grupo) {
-            fragment = new GetTestFragment();
-            fragmentos= true;
-            //fragment = new FragmentBuscarGrupo();// pasa a fragment de grupo
-            //fragmentos = true;
+            //fragment = new GetTestFragment();
+            //fragmentos= true;
+            fragment = new FragmentBuscarGrupo();// pasa a fragment de grupo
+            fragmentos = true;
         }
         else if (id == R.id.crear_grupo) {
+            fragment = new GetTestFragment();
+            fragmentos= true;
             //fragment=new FragmentCrearGrupo();
             //fragmentos= true;
         }
@@ -131,12 +139,12 @@ public class MainActivity extends AppCompatActivity
             //fragmentos = true;
         }
         else if (id == R.id.ramos) {
-            //fragment = new FragmentRamos();
-            //fragmentos= true;
+            fragment = new FragmentRamos();
+            fragmentos= true;
         }
         else if (id == R.id.buscar_usuarios) {
-            //fragment = new FragmentBuscarUsuarios();
-            //fragmentos= true;
+            fragment = new FragmentEncontrarOtrosEstudiantes();
+            fragmentos= true;
         }
         else if (id == R.id.nav_enviar) {
             //fragment = new FragmentEnviar();

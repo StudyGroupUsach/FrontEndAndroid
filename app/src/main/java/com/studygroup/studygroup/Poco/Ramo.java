@@ -27,4 +27,15 @@ public class Ramo {
 
     public String getName(){return this.nombreRamo;}
 
+    @Override
+    public String toString() {
+        return " "+this.ramoId+" " + this.nombreRamo+" " ;
+    }
+
+    public int getRamoId() {
+        return ramoId;
+    }
+
+    public String ramoIdToString(){return ""+this.ramoId+" ";}
+
 }
