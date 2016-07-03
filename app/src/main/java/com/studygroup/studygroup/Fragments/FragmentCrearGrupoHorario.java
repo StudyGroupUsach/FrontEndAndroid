@@ -13,12 +13,12 @@ import com.studygroup.studygroup.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FragmentBuscarGrupo.OnFragmentInteractionListener} interface
+ * {@link FragmentCrearGrupoHorario.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FragmentBuscarGrupo#newInstance} factory method to
+ * Use the {@link FragmentCrearGrupoHorario#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentBuscarGrupo extends Fragment {
+public class FragmentCrearGrupoHorario extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,7 +32,7 @@ public class FragmentBuscarGrupo extends Fragment {
 
     private View view;
 
-    public FragmentBuscarGrupo() {
+    public FragmentCrearGrupoHorario() {
         // Required empty public constructor
     }
 
@@ -42,11 +42,11 @@ public class FragmentBuscarGrupo extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentBuscarGrupo.
+     * @return A new instance of fragment FragmentCrearGrupoHorario.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentBuscarGrupo newInstance(String param1, String param2) {
-        FragmentBuscarGrupo fragment = new FragmentBuscarGrupo();
+    public static FragmentCrearGrupoHorario newInstance(String param1, String param2) {
+        FragmentCrearGrupoHorario fragment = new FragmentCrearGrupoHorario();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,7 +67,7 @@ public class FragmentBuscarGrupo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.fragment_fragment_buscar_grupo, container, false);
+        view= inflater.inflate(R.layout.fragment_fragment_crear_grupo_horario, container, false);
         return view;
     }
 

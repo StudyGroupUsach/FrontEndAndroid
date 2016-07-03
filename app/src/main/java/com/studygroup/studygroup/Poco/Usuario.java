@@ -25,6 +25,13 @@ public class Usuario {
         this.carreraId = carreraId;
     }
 
+    public Usuario(String nombre,String apellidos, String numeroMovil, String mail){
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.mail = mail;
+        this.numeroMovil = numeroMovil;
+    }
+
     @SerializedName("usuarioId")
     public int usuarioId;
 
@@ -71,5 +78,14 @@ public class Usuario {
         catch (JSONException e) { }
 
         return usuarioJson;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario: "+this.nombre+"\nMail: " + this.mail+" " +"\nNumero: "+this.numeroMovil+" ";
+    }
+
+    public int getUsuarioId() {
+        return usuarioId;
     }
 }

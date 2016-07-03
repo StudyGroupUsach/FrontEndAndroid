@@ -29,6 +29,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.studygroup.studygroup.Fragments.FragmentBuscarGrupo;
+import com.studygroup.studygroup.Fragments.FragmentEncontrarEstudiantesGrupoAnterior;
 import com.studygroup.studygroup.Fragments.FragmentEncontrarOtrosEstudiantes;
 import com.studygroup.studygroup.Fragments.FragmentRamos;
 import com.studygroup.studygroup.Poco.Usuario;
@@ -48,7 +49,8 @@ public class MainActivity extends AppCompatActivity
         PostTestFragment.OnFragmentInteractionListener,
         FragmentRamos.OnFragmentInteractionListener,
         FragmentBuscarGrupo.OnFragmentInteractionListener,
-        FragmentEncontrarOtrosEstudiantes.OnFragmentInteractionListener{
+        FragmentEncontrarOtrosEstudiantes.OnFragmentInteractionListener,
+        FragmentEncontrarEstudiantesGrupoAnterior.OnFragmentInteractionListener{
 
 
     @Override
@@ -147,8 +149,8 @@ public class MainActivity extends AppCompatActivity
             fragmentos= true;
         }
         else if (id == R.id.nav_enviar) {
-            //fragment = new FragmentEnviar();
-            //fragmentos = true;
+            fragment = new FragmentEncontrarEstudiantesGrupoAnterior();
+            fragmentos = true;
         }
 
         if(fragmentos){// al ver que se ejecuta un fragmento se encarga de pasar al otro

@@ -30,7 +30,7 @@ public class CarreraAdapter extends ArrayAdapter<Carrera> {
         this.resource = resource;
         this.textViewResourceId = textViewResourceId;
         this.items = items;
-        tempItems = new ArrayList<Carrera>(items); // this makes the difference.
+        tempItems = new ArrayList<Carrera>(items);
         suggestions = new ArrayList<Carrera>();
     }
 

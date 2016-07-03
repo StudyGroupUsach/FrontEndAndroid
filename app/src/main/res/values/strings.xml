@@ -39,7 +39,12 @@
     <string name="url_grupos_temporales">http://mongostudygroup-app4tbd.rhcloud.com/servicios/grupos_temporales/</string>
     <!--agregar /usuarioId-->
     <string name="url_ramos_a_elegir">http://mongostudygroup-app4tbd.rhcloud.com/servicios/usuarios/ramos_a_elegir/</string>
-
+    <!-- ver grupos de estudio segun /ramoId -->
+    <string name="url_grupo_estudio_ramo_id">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_relacion_usuarios/grupo_estudio_por_grupos/</string>
+    <!-- encuentros previos /usuarioId-->
+    <string name="url_encuentros_previos">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_relacion_usuarios/encuentros_previos/</string>
+    <!-- grupo temporal integrantes /grupoId-->
+    <string name="url_grupo_temporal_integrantes">http://mongostudygroup-app4tbd.rhcloud.com/servicios/grupos_temporales/integrantes/</string>
 
     <!-- TODO navigation drawer items-->
     <string name="buscar_grupo">Buscar Grupo</string>
@@ -48,7 +53,7 @@
     <string name="ramos">Ramos</string>
     <string name="comunicaciones">Comunicaciones</string>
     <string name="buscar_usuarios">Buscar Usuarios</string>
-    <string name="enviar">Enviar</string>
+    <string name="enviar">Encuentros Previos</string>
     <!--- TODO otros-->
     <string name="title_activity_main">Study Group</string>
     <string name="action_settings">Acerca de</string>

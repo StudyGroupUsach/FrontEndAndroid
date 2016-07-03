@@ -29,7 +29,7 @@ public class RamoAdapter extends ArrayAdapter<Ramo> {
         this.resource = resource;
         this.textViewResourceId = textViewResourceId;
         this.items = items;
-        tempItems = new ArrayList<Ramo>(items); // this makes the difference.
+        tempItems = new ArrayList<Ramo>(items);
         suggestions = new ArrayList<Ramo>();
     }
 

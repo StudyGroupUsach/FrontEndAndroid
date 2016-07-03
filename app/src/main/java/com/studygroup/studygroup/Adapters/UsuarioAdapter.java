@@ -7,29 +7,30 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.studygroup.studygroup.Poco.Lugar;
+import com.studygroup.studygroup.Poco.Usuario;
 import com.studygroup.studygroup.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by dllob on 15-06-2016.
+ * Created by dllob on 02-07-2016.
  */
-public class LugarAdapter extends ArrayAdapter<Lugar> {
+public class UsuarioAdapter extends ArrayAdapter<Usuario>{
+
 
     Context context;
     int resource, textViewResourceId;
-    List<Lugar> items, tempItems, suggestions;
+    List<Usuario> items, tempItems, suggestions;
 
-    public LugarAdapter(Context context, int resource, int textViewResourceId, List<Lugar> items) {
+    public UsuarioAdapter(Context context, int resource, int textViewResourceId, List<Usuario> items) {
         super(context, resource, textViewResourceId, items);
         this.context = context;
         this.resource = resource;
         this.textViewResourceId = textViewResourceId;
         this.items = items;
-        tempItems = new ArrayList<Lugar>(items);
-        suggestions = new ArrayList<Lugar>();
+        tempItems = new ArrayList<Usuario>(items); // this makes the difference.
+        suggestions = new ArrayList<Usuario>();
     }
 
     @Override
@@ -45,7 +46,7 @@ public class LugarAdapter extends ArrayAdapter<Lugar> {
             view = inflater.inflate(R.layout.content_main, parent, false);
         }
         TextView main_text = (TextView) view.findViewById(R.id.list_lugar);
-        main_text.setText(items.get(position).getIdLugar());
+        main_text.setText(items.get(position).getUsuarioId());
 
         return view;
     }
