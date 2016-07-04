@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import java.lang.reflect.Type;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.google.gson.reflect.TypeToken;
 import com.studygroup.studygroup.Poco.PreferenciaDeEstudio;
 import com.studygroup.studygroup.Poco.Ramo;
+import com.studygroup.studygroup.Poco.Usuario;
 import com.studygroup.studygroup.R;
 import com.studygroup.studygroup.VolleyHelper.GsonRequest;
 import com.studygroup.studygroup.VolleyHelper.VolleySingleton;
@@ -42,6 +45,9 @@ public class FragmentRamos extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private Usuario usuario;
+    public void setUsuario(Usuario usuario){this.usuario=usuario;}
+
     private OnFragmentInteractionListener mListener;
 
     PreferenciaDeEstudio preferenciaDeEstudio;
@@ -49,6 +55,10 @@ public class FragmentRamos extends Fragment {
     ListView listViewPreferencias;
 
     private View myFragmentView;
+
+    Button button;
+
+    int error=0;
 
     ArrayList<PreferenciaDeEstudio> mPreferenciasDeEstudio = new ArrayList<>();
 
@@ -91,9 +101,22 @@ public class FragmentRamos extends Fragment {
         // Inflate the layout for this fragment
         myFragmentView=inflater.inflate(R.layout.fragment_fragment_ramos, container, false);
         listViewPreferencias=(ListView) myFragmentView.findViewById(R.id.list_view_ramo);
-
+        Toast.makeText(getActivity().getApplicationContext(),"hola"+usuario.nombre,Toast.LENGTH_LONG).show();
+        button=(Button)myFragmentView.findViewById(R.id.buttonSeleccionarRamo);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentAgregarRamos fragment = new FragmentAgregarRamos();
+                fragment.setUsuario(usuario);
+                FragmentTransaction fragmentTransaction;
+                fragmentTransaction=getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.content_main,fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
         Type type = new TypeToken<ArrayList<PreferenciaDeEstudio>>() {}.getType();
-        GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, getResources().getString(R.string.url_preferencia_ramos)+"16",type, null,
+        GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, getResources().getString(R.string.url_preferencia_ramos)+usuario.usuarioId,type, null,
                 new Response.Listener<ArrayList<PreferenciaDeEstudio>>() {
                     @Override
                     public void onResponse(ArrayList<PreferenciaDeEstudio> response) {

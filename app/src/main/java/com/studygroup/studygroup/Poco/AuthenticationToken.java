@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class AuthenticationToken {
 
     @SerializedName("usuarioId")
-    public String userId;
+    public int userId;
 
     @SerializedName("usuarioConectado")
     public boolean isConnected;

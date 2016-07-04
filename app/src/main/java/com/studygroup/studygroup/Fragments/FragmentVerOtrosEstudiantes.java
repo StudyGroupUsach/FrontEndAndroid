@@ -110,7 +110,7 @@ public class FragmentVerOtrosEstudiantes extends Fragment {
 
 
         Type type = new TypeToken<ArrayList<PreferenciaDeEstudio>>() {}.getType();
-        String url = getResources().getString(R.string.url_encontrar_otros_estudiantes)+"16"+"/"+ramo.ramoIdToString()+"/";
+        String url = getResources().getString(R.string.url_encontrar_otros_estudiantes)+usuario.usuarioId+"/"+ramo.ramoIdToString()+"/";
         GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, url,type, null,
                 new Response.Listener<ArrayList<PreferenciaDeEstudio>>() {
                     @Override

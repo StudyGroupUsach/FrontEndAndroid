@@ -7,8 +7,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.studygroup.studygroup.Poco.AuthenticationToken;
+import com.studygroup.studygroup.Poco.HorarioLibre;
+import com.studygroup.studygroup.Poco.PerfilAyudante;
+import com.studygroup.studygroup.Poco.Usuario;
 import com.studygroup.studygroup.R;
+import com.studygroup.studygroup.VolleyHelper.GsonRequest;
+import com.studygroup.studygroup.VolleyHelper.VolleySingleton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +47,20 @@ public class FragmentValorarAyudantes extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private Usuario usuario;
+    public  void setUsuario(Usuario usuario){this.usuario=usuario;}
+
+    private PerfilAyudante perfilAyudante;
+    public void setPerfilAyudante(PerfilAyudante perfilAyudante){this.perfilAyudante=perfilAyudante;}
+
+    HorarioLibre horarioLibre;
+
     private View view;
+
+    Button button;
+    EditText editText;
+    TextView textView;
+    TextView textViewNombre;
 
     public FragmentValorarAyudantes() {
         // Required empty public constructor
@@ -68,6 +98,58 @@ public class FragmentValorarAyudantes extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view=inflater.inflate(R.layout.fragment_fragment_valorar_ayudantes, container, false);
+        button=(Button)view.findViewById(R.id.buttonPublicarValoracion);
+        editText=(EditText)view.findViewById(R.id.editTextValoracionAyudante);
+        textView=(TextView)view.findViewById(R.id.textViewVerHorariosDisponibles);
+        textViewNombre=(TextView)view.findViewById(R.id.textViewNombreAyudante);
+        String nombrar =perfilAyudante.nombre+" "+perfilAyudante.apellidos;
+        textViewNombre.setText(nombrar);
+
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                int valoracionEntero= Integer.parseInt(editText.getText().toString());
+                JSONObject valorarJson = new JSONObject();
+                try {
+                    valorarJson.put("valoracionAyudante", valoracionEntero);
+                    valorarJson.put("usuarioId", usuario.usuarioId);
+                }
+                catch (JSONException e) { }
+
+                GsonRequest gRequest = new GsonRequest(Request.Method.PUT,getResources().getString(R.string.url_valorar_ayudante)+""+perfilAyudante.ayudanteId+"", null, null, valorarJson,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                            }
+                        });
+
+                VolleySingleton.getInstance(getActivity()).addToRequestQueue(gRequest);
+            }
+        });
+
+        GsonRequest gsonRequest = new GsonRequest(Request.Method.GET,getResources().getString(R.string.url_ayudante_hora_libre)+""+perfilAyudante.ayudanteId+"", HorarioLibre.class, null,
+                new Response.Listener<HorarioLibre>() {
+
+            @Override
+            public void onResponse(HorarioLibre response) {
+                //manage response code
+                horarioLibre=response;
+                textView.setText(horarioLibre.horario);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                //if(volleyError != null) Log.e("MainActivity", volleyError.getMessage());
+            }
+        });
+        VolleySingleton.getInstance(getActivity()).addToRequestQueue(gsonRequest);
+
         return view;
     }
 

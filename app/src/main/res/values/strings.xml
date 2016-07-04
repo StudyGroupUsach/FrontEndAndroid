@@ -32,6 +32,7 @@
     <string name="url_lugares">http://mongostudygroup-app4tbd.rhcloud.com/servicios/lugares/</string>
     <!-- agregar /usuarioId-->
     <string name="url_preferencia_ramos">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_relacion_usuarios/</string>
+    <string name="url_ramo_a_elegir">http://mongostudygroup-app4tbd.rhcloud.com/servicios/usuarios/ramos_a_elegir/</string>
     <!-- agregar aparte el /usuarioId/ramoId-->
     <string name="url_preferencia_grupo_estudio">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_relacion_usuarios/grupo_estudio/</string>
     <!-- agregar /usuarioId/ramoId-->
@@ -45,6 +46,17 @@
     <string name="url_encuentros_previos">http://mongostudygroup-app4tbd.rhcloud.com/servicios/gestion_relacion_usuarios/encuentros_previos/</string>
     <!-- grupo temporal integrantes /grupoId-->
     <string name="url_grupo_temporal_integrantes">http://mongostudygroup-app4tbd.rhcloud.com/servicios/grupos_temporales/integrantes/</string>
+    <!-- para ser ayudante /usuarioId-->
+    <string name="url_ser_ayudante">http://mongostudygroup-app4tbd.rhcloud.com/servicios/perfiles_ayudantes/</string>
+    <!--crear grupo horario-->
+    <string name="url_crear_grupo_horario">http://mongostudygroup-app4tbd.rhcloud.com/servicios/grupos_horarios/</string>
+    <!--valorar ayudantes /ayudanteId-->
+    <string name="url_valorar_ayudante">http://mongostudygroup-app4tbd.rhcloud.com/servicios/perfiles_ayudantes/valoraciones/</string>
+    <!-- ayudante hora libre /ayudanteId-->
+    <string name="url_ayudante_hora_libre">http://mongostudygroup-app4tbd.rhcloud.com/servicios/perfiles_ayudantes/horario_libre/</string>
+    <!-- agregar integrantes grupo temporal-->
+    <string name="url_agregar_integrante_grupo">http://mongostudygroup-app4tbd.rhcloud.com/servicios/grupos_temporales/agregar_integrantes/</string>
+
 
     <!-- TODO navigation drawer items-->
     <string name="buscar_grupo">Buscar Grupo</string>
@@ -60,6 +72,10 @@
     <string name="opciones">Opciones</string>
     <string name="void_string"></string>
     <string name="new_item"></string>
+    <string name="title_activity_maps">Map</string>
+    <string name="ayudantias">Ayudantias</string>
+    <string name="ser_ayudante">Ser Ayudante</string>
+    <string name="no_ayudante">No ser más ayudante</string>
 
 
 </resources>

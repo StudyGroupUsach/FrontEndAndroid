@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.studygroup.studygroup.Fragments.FragmentListarAyudantes">
+    tools:context="com.studygroup.studygroup.Fragments.FragmentBuscadoGrupo">
 
     <!-- TODO: Update blank fragment layout -->
     <ListView
-        android:id="@+id/list_view_listar_ayudantes"
+        android:id="@+id/list_view_listar_grupos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

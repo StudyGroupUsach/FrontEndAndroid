@@ -11,9 +11,10 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/crear_grupo" />
         <item
-            android:id="@+id/carrera"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/carrera" />
+            android:id="@+id/ver_densidad"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Ver densidad" />
+
         <item
             android:id="@+id/ramos"
             android:icon="@drawable/ic_menu_manage"
@@ -30,6 +31,19 @@
                 android:id="@+id/nav_enviar"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/enviar" />
+        </menu>
+    </item>
+    <item android:title="@string/ayudantias">
+        <menu>
+            <item
+                android:id="@+id/ver_ayudantes"
+                android:title="ver ayudantes"/>
+            <item
+                android:id="@+id/ver_ayudantias"
+                android:title="Buscar Ayudantias"/>
+            <item
+                android:id="@+id/ayudantia"
+                android:title="ayudantia"/>
         </menu>
     </item>
 

@@ -3,10 +3,12 @@ package com.studygroup.studygroup;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -70,6 +72,8 @@ public class LoginActivity extends AppCompatActivity {
     private View mLoginFormView;
     private View mRegisterFormView;
 
+    AuthenticationToken authenticationToken;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,10 +106,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public void attemptLogin(){
 
-        if(mEmailView.getText().toString().equals("yolo")){
+        /**if(mEmailView.getText().toString().equals("yolo")){
            openMainActivity();
-        }
-        else if(TextUtils.isEmpty(mEmailView.getText())) {
+        }*/
+        if(TextUtils.isEmpty(mEmailView.getText())) {
             mEmailView.setError(getResources().getString(R.string.error_field_required));
         }
         else if(!mEmailView.getText().toString().contains("@usach.cl")){
@@ -137,13 +141,13 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(AuthenticationToken response) {
 
                         if(response.isConnected){
+                            int enteroId=response.userId;
                             showProgress(true);
-                            openMainActivity();
+                            openMainActivity(enteroId);
                         }
                         else{
                             Toast.makeText(LoginActivity.this,getResources().getString(R.string.error_incorrect_info),Toast.LENGTH_LONG).show();
                         }
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -156,8 +160,9 @@ public class LoginActivity extends AppCompatActivity {
         VolleySingleton.getInstance(this).addToRequestQueue(gRequest);
     }
 
-    public void openMainActivity(){
+    public void openMainActivity(int enteroId){
         Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
+        myIntent.putExtra("usuarioId",enteroId);
         LoginActivity.this.startActivity(myIntent);
     }
 
@@ -210,6 +215,11 @@ public class LoginActivity extends AppCompatActivity {
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }
 

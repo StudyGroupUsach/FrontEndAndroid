@@ -56,10 +56,7 @@ public class GruposTemporales {
     @Override
     public String toString() {
         if(descripcionTemporal.equals("")||descripcionTemporal.equals(null)){return "nada";}
-        return " "+this.grupoTemporalId+" " ;
-        //+ this.descripcionTemporal+" "+ this.duracionTemporal+" "+
-        //this.inicioTemporal+" "+ this.idLugar+" "+this.ramoId+" "+this.nombreRamo+" "+
-        //        this.usuarioId+" "+ this.nombre+" "
+        return " "+this.descripcionTemporal+"\n"+this.inicioTemporal+"\n"+this.duracionTemporal+"";
     }
 
 }

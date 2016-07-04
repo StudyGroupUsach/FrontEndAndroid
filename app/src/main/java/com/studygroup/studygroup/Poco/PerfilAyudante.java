@@ -17,7 +17,7 @@ import com.google.gson.annotations.SerializedName;
 public class PerfilAyudante {
 
     @SerializedName("perfilAyudanteId")
-    public String ayudanteId;
+    public int ayudanteId;
 
     @SerializedName("nombre")
     public String nombre;
@@ -34,6 +34,17 @@ public class PerfilAyudante {
     @SerializedName("valoracionPromedio")
     public int valoracionPromedio;
 
+    public PerfilAyudante(String nombre) {
+        this.nombre = nombre;
+    }
 
+    public int getAyudanteId() {
+        return ayudanteId;
+    }
+
+    @Override
+    public String toString(){
+        return ""+this.nombre+" "+this.apellidos+" valoracion:"+valoracionPromedio+"";
+    }
 
 }

@@ -101,6 +101,7 @@ public class FragmentEncontrarOtrosEstudiantes extends Fragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FragmentVerOtrosEstudiantes fragment = new FragmentVerOtrosEstudiantes();
                 fragment.setRamo(mPreferenciasDeEstudio.get(0).ramo.get(position));
+                fragment.setUsuario(usuario);
                 FragmentTransaction fragmentTransaction;
                 fragmentTransaction=getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.content_main,fragment);
@@ -110,7 +111,7 @@ public class FragmentEncontrarOtrosEstudiantes extends Fragment{
         });
 
         Type type = new TypeToken<ArrayList<PreferenciaDeEstudio>>() {}.getType();
-        GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, getResources().getString(R.string.url_preferencia_ramos)+"16",type, null,
+        GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, getResources().getString(R.string.url_preferencia_ramos)+usuario.usuarioId+"",type, null,
                 new Response.Listener<ArrayList<PreferenciaDeEstudio>>() {
                     @Override
                     public void onResponse(ArrayList<PreferenciaDeEstudio> response) {

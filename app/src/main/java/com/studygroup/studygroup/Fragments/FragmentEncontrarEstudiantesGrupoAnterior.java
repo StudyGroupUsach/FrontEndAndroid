@@ -94,10 +94,11 @@ public class FragmentEncontrarEstudiantesGrupoAnterior extends Fragment {
         view= inflater.inflate(R.layout.fragment_fragment_encontrar_estudiantes_grupo_anterior, container, false);
         listView=(ListView)view.findViewById(R.id.list_view_encontrar_estudiantes_grupo_anterior);
 
-        GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, getResources().getString(R.string.url_encuentros_previos)+"32",EncuentrosPrevios.class, null,
+        GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, getResources().getString(R.string.url_encuentros_previos)+usuario.usuarioId+"",EncuentrosPrevios.class, null,
                 new Response.Listener<EncuentrosPrevios>(){
                     @Override
                     public void onResponse(EncuentrosPrevios response) {
+                        if(response==null){Toast.makeText(getActivity().getApplicationContext(),"es 0",Toast.LENGTH_LONG).show();}
                         encuentrosPrevios=response;
                         completarAdapter();
                     }

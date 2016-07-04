@@ -25,8 +25,6 @@ import java.util.List;
  "grupoHorarios":[]
  */
 public class Lugar{
-    //@SerializedName("carreraId")
-    //public int carreraId;
 
     @SerializedName("idLugar")
     public int idLugar;
@@ -36,6 +34,9 @@ public class Lugar{
 
     @SerializedName("longitudLugar")
     public double longitudLugar;
+
+    @SerializedName("nombreLugar")
+    public String nombreLugar;
 
     @SerializedName("grupoTemporals")
     public List<GruposTemporales> gruposTemporales;
@@ -53,7 +54,7 @@ public class Lugar{
 
     @Override
     public String toString() {
-        return " "+this.idLugar+" " + this.latitudLugar+" "+ this.longitudLugar+" " ;
+        return " "+this.nombreLugar+" ";
     }
 
 }
