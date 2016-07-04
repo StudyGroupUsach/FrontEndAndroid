@@ -37,8 +37,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.studygroup.studygroup.Fragments.FragmentAgregarRamos;
 import com.studygroup.studygroup.Fragments.FragmentAyudante;
+import com.studygroup.studygroup.Fragments.FragmentAyudantias;
 import com.studygroup.studygroup.Fragments.FragmentBuscadoGrupo;
 import com.studygroup.studygroup.Fragments.FragmentBuscarGrupo;
+import com.studygroup.studygroup.Fragments.FragmentCambiarLugar;
 import com.studygroup.studygroup.Fragments.FragmentCreadoGrupo;
 import com.studygroup.studygroup.Fragments.FragmentCrearGrupo;
 import com.studygroup.studygroup.Fragments.FragmentCrearGrupoHorario;
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         FragmentAgregarRamos.OnFragmentInteractionListener,
         FragmentAyudante.OnFragmentInteractionListener,
+        FragmentAyudantias.OnFragmentInteractionListener,
         FragmentBuscadoGrupo.OnFragmentInteractionListener,
         FragmentBuscarGrupo.OnFragmentInteractionListener,
         FragmentCreadoGrupo.OnFragmentInteractionListener,
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity
         FragmentRamos.OnFragmentInteractionListener,
         FragmentValorarAyudantes.OnFragmentInteractionListener,
         GetTestFragment.OnFragmentInteractionListener,
+        FragmentCambiarLugar.OnFragmentInteractionListener,
         PostTestFragment.OnFragmentInteractionListener{
 
 
@@ -198,6 +202,12 @@ public class MainActivity extends AppCompatActivity
             fragmentos=true;
             PasarFragmento(fragment,fragmentos,item);
         }
+        else if(id== R.id.ver_densidad){
+            FragmentCambiarLugar fragment= new FragmentCambiarLugar();
+            fragment.setUsuario(usuario);
+            fragmentos=true;
+            PasarFragmento(fragment,fragmentos,item);
+        }
         else if (id == R.id.ramos) {
             FragmentRamos fragment = new FragmentRamos();
             fragment.setUsuario(usuario);
@@ -219,6 +229,11 @@ public class MainActivity extends AppCompatActivity
         else if(id==R.id.ver_ayudantes){
             FragmentListarAyudantes fragment= new FragmentListarAyudantes();
             fragment.setUsuario(usuario);
+            fragmentos=true;
+            PasarFragmento(fragment,fragmentos,item);
+        }
+        else if(id==R.id.ver_ayudantias){
+            FragmentAyudantias fragment= new FragmentAyudantias();
             fragmentos=true;
             PasarFragmento(fragment,fragmentos,item);
         }
